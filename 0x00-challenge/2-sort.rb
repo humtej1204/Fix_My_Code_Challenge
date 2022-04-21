@@ -7,6 +7,10 @@
 result = []
 ARGV.each do |arg|
     # skip if not integer
+    # ^ -> at start of the string
+    # -? -> if there are the character "-" at start of the string
+    # [0-9]+ -> if there are one or more characters which are numbers
+    # $ -> at end of the string
     next if arg !~ /^-?[0-9]+$/
 
     # convert to integer
@@ -20,7 +24,7 @@ ARGV.each do |arg|
         if result[i] < i_arg
             i += 1
         else
-            result.insert(i - 1, i_arg)
+            result.insert(i, i_arg)
             is_inserted = true
             break
         end
